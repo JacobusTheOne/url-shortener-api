@@ -20,10 +20,24 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers(
+    "/",
+    "/login.html",
+    "/register.html",
+    "/app.html",
+    "/styles.css",
+    "/app.js",
+    "/error",
+    "/favicon.ico",
+    "/**/*.css",
+    "/**/*.js"
+).permitAll()
+
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/urls/**").authenticated()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
             )
+
             .addFilterBefore(
                 jwtAuthenticationFilter,
                 UsernamePasswordAuthenticationFilter.class

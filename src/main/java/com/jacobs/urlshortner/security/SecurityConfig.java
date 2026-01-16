@@ -20,23 +20,32 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers(
-    "/",
-    "/login.html",
-    "/register.html",
-    "/app.html",
-    "/styles.css",
-    "/app.js",
-    "/error",
-    "/favicon.ico",
-    "/**/*.css",
-    "/**/*.js"
-).permitAll()
+    .requestMatchers(
+        "/",
+        "/error",
+        "/favicon.ico",
 
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/urls/**").authenticated()
-                .anyRequest().authenticated()
-            )
+        // Static frontend
+        "/login.html",
+        "/register.html",
+        "/app.html",
+        "/styles.css",
+        "/app.js",
+        "/**/*.css",
+        "/**/*.js"
+    ).permitAll()
+
+    // Auth endpoints
+    .requestMatchers("/api/auth/**").permitAll()
+
+    // Short redirect endpoint (public!)
+    .requestMatchers("/r/**").permitAll()
+
+    // Protected API
+    .requestMatchers("/api/urls/**").authenticated()
+
+    .anyRequest().authenticated()
+)
 
             .addFilterBefore(
                 jwtAuthenticationFilter,

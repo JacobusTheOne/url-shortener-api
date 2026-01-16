@@ -2,6 +2,9 @@ package com.jacobs.urlshortner.service;
 
 import com.jacobs.urlshortner.model.ShortUrl;
 import com.jacobs.urlshortner.repository.ShortUrlRepository;
+
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,6 +17,10 @@ public class UrlShortenerService {
     public UrlShortenerService(ShortUrlRepository repository) {
         this.repository = repository;
     }
+    public List<ShortUrl> getUrlsForUser(String email) {
+        return repository.findAllByCreatedBy(email);
+    }
+
 
     public ShortUrl createShortUrl(String originalUrl) {
         String shortCode = UUID.randomUUID()

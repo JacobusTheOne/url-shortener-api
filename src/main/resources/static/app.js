@@ -65,11 +65,44 @@ function shorten() {
     return res.json();
   })
   .then(data => {
-    const shortUrl = `${API_BASE}/${data.shortCode}`;
-    document.getElementById("result").innerHTML =
-      `<a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
-  })
+  const shortUrl = `${API_BASE}/r/${data.shortCode}`;
+
+  document.getElementById("result").innerHTML =
+    `<a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+})
   .catch(() => {
     document.getElementById("result").innerText = "Error creating URL";
   });
 }
+
+function loadMyUrls() {
+  const token = localStorage.getItem("token");
+
+  fetch(`${API_BASE}/api/urls/me`, {
+    headers: {
+      "Authorization": "Bearer " + token
+    }
+  })
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById("urlList");
+    list.innerHTML = "";
+
+    data.forEach(url => {
+      const shortUrl = `${API_BASE}/r/${url.shortCode}`;
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+      list.appendChild(li);
+    });
+  });
+}
+
+function logout() {
+  localStorage.removeItem("token");
+  window.location.href = "login.html";
+}
+
+
+window.onload = loadMyUrls;
+
+loadMyUrls();

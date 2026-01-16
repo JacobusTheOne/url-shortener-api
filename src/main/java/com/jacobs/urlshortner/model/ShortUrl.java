@@ -19,6 +19,8 @@ public class ShortUrl {
 
     private LocalDateTime createdAt;
 
+    private String createdBy;
+
     private Long clickCount = 0L;
 
     public ShortUrl() {
@@ -56,6 +58,14 @@ public class ShortUrl {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
     public Long getClickCount() {

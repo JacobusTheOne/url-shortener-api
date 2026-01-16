@@ -25,7 +25,13 @@ public class UrlShortenerService {
     }
 
     public ShortUrl getByShortCode(String shortCode) {
-        return repository.findByShortCode(shortCode)
-                .orElseThrow(() -> new RuntimeException("Short URL not found"));
-    }
+    ShortUrl shortUrl = repository.findByShortCode(shortCode)
+            .orElseThrow(() -> new RuntimeException("Short URL not found"));
+
+    shortUrl.incrementClickCount();
+    repository.save(shortUrl);
+
+    return shortUrl;
+}
+
 }

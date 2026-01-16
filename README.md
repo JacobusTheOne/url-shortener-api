@@ -32,3 +32,12 @@ and a simple frontend interface.
 
 Open:
 http://localhost:8080/login.html
+
+
+## Database
+
+The application uses PostgreSQL in production.
+A Docker Compose setup is provided to run the database locally.
+
+Start the full stack:
+docker compose up --build

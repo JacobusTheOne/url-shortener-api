@@ -87,7 +87,15 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-	</dependencies>
+	
+
+ 
+   <dependency>
+     <groupId>com.h2database</groupId>
+     <artifactId>h2</artifactId>
+     <version>1.4.199</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>

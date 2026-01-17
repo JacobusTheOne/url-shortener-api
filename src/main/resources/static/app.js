@@ -1,4 +1,7 @@
-const API_BASE = "https://url-shortener-api-u1ec.onrender.com";
+// Auto-detect environment: use current origin for deployed app, localhost for local dev
+const API_BASE = window.location.hostname === 'localhost' 
+  ? 'http://localhost:8080' 
+  : window.location.origin;
 
 function login() {
   fetch(`${API_BASE}/api/auth/login`, {

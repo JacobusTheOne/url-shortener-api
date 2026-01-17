@@ -3,6 +3,10 @@
 A secure URL shortener built with Spring Boot, JWT authentication,
 and a simple frontend interface.
 
+## Live Demo
+
+🚀 **[Visit the live application on Render](https://url-shortener-api-u1ec.onrender.com/login.html)**
+
 ## Features
 - User registration & login (JWT-based authentication)
 - Create shortened URLs

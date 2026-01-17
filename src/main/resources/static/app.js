@@ -69,6 +69,8 @@ function shorten() {
 
   document.getElementById("result").innerHTML =
     `<a href="${shortUrl}" target="_blank">${shortUrl}</a>`;
+  
+  loadMyUrls();
 })
   .catch(() => {
     document.getElementById("result").innerText = "Error creating URL";

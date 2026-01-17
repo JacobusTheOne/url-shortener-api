@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:8080";
+const API_BASE = "https://url-shortener-api-u1ec.onrender.com";
 
 function login() {
   fetch(`${API_BASE}/api/auth/login`, {

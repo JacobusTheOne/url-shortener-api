@@ -22,8 +22,9 @@ public class UrlShortenerController {
     }
 
     @PostMapping
-    public ResponseEntity<ShortUrl> create(@RequestBody CreateUrlRequest request) {
-        ShortUrl shortUrl = service.createShortUrl(request.originalUrl());
+    public ResponseEntity<ShortUrl> create(@RequestBody CreateUrlRequest request, Authentication authentication) {
+        String email = authentication.getName();
+        ShortUrl shortUrl = service.createShortUrl(request.originalUrl(), email);
         return ResponseEntity.ok(shortUrl);
     }
 

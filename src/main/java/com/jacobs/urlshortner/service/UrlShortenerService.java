@@ -22,12 +22,13 @@ public class UrlShortenerService {
     }
 
 
-    public ShortUrl createShortUrl(String originalUrl) {
+    public ShortUrl createShortUrl(String originalUrl, String createdBy) {
         String shortCode = UUID.randomUUID()
                 .toString()
                 .substring(0, 8);
 
         ShortUrl shortUrl = new ShortUrl(originalUrl, shortCode);
+        shortUrl.setCreatedBy(createdBy);
         return repository.save(shortUrl);
     }
 
